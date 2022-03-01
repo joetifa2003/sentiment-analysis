@@ -7,11 +7,13 @@ const Home = () => {
   const [sentiment, setSentiment] = useState("");
 
   const analyze = async () => {
-    const response = await axios.post("/api/analyze", { text });
+    if (text) {
+      const response = await axios.post("/api/analyze", { text });
 
-    const { percent, sentiment } = await response.data;
-    setPercent(percent);
-    setSentiment(sentiment);
+      const { percent, sentiment } = await response.data;
+      setPercent(percent);
+      setSentiment(sentiment);
+    }
   };
 
   const onTextChange = (e) => {
